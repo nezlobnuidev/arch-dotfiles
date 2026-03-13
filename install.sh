@@ -264,18 +264,62 @@ EOF
 install_local_themes() {
   print_header "Installing local icon theme"
 
-  local script_dir icon_archive
+  local script_dir icon_archive gtk_archive kdeglobals
   script_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
   icon_archive="$script_dir/arcs/Icon_Gruvbox.tar.gz"
+  gtk_archive="$script_dir/arcs/Gtk_Gruvbox-Dark.tar.gz"
+  kdeglobals="$HOME/.config/kdeglobals"
 
-  mkdir -p "$HOME/.icons"
+  mkdir -p "$HOME/.local/share/icons"
+  mkdir -p "$HOME/.local/share/themes"
+  mkdir -p "$HOME/.config"
+  mkdir -p "$HOME/.config/gtk-3.0"
+  mkdir -p "$HOME/.config/gtk-4.0"
 
   if [ -f "$icon_archive" ]; then
     print_info "Installing icon theme from $icon_archive..."
-    tar -xzf "$icon_archive" -C "$HOME/.icons"
+    tar -xzf "$icon_archive" -C "$HOME/.local/share/icons"
+
+    if command -v kwriteconfig6 &>/dev/null; then
+      print_info "Setting KDE icon theme to Gruvbox..."
+      kwriteconfig6 --file "$kdeglobals" --group Icons --key Theme Gruvbox
+    else
+      print_info "kwriteconfig6 not found, writing KDE icon theme manually..."
+      if [ -f "$kdeglobals" ] && grep -q '^\[Icons\]' "$kdeglobals"; then
+        sed -i '/^\[Icons\]/,/^\[/ s/^Theme=.*/Theme=Gruvbox/' "$kdeglobals"
+        grep -q '^Theme=Gruvbox$' "$kdeglobals" || sed -i '/^\[Icons\]/a Theme=Gruvbox' "$kdeglobals"
+      else
+        cat >>"$kdeglobals" <<EOF
+
+[Icons]
+Theme=Gruvbox
+EOF
+      fi
+    fi
   else
     print_warning "Icon archive not found: $icon_archive"
   fi
+
+  if [ -f "$gtk_archive" ]; then
+    print_info "Installing GTK theme from $gtk_archive..."
+    tar -xzf "$gtk_archive" -C "$HOME/.local/share/themes"
+  else
+    print_warning "GTK archive not found: $gtk_archive"
+  fi
+
+  cat >"$HOME/.config/gtk-3.0/settings.ini" <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark
+gtk-icon-theme-name=Gruvbox
+gtk-cursor-theme-name=Bibata-Modern-Ice
+EOF
+
+  cat >"$HOME/.config/gtk-4.0/settings.ini" <<EOF
+[Settings]
+gtk-theme-name=Gruvbox-Dark
+gtk-icon-theme-name=Gruvbox
+gtk-cursor-theme-name=Bibata-Modern-Ice
+EOF
 
   print_success "Local icon theme installed"
 }
