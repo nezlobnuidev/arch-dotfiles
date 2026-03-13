@@ -124,9 +124,7 @@ install_dependencies() {
     "xdg-desktop-portal-hyprland"
     "xdg-desktop-portal-gtk"
     "xdg-user-dirs"
-    "adw-gtk-theme"
-    "qt5ct"    
-    "nwg-look"
+    "qt5ct"
     "ttf-jetbrains-mono-nerd"
     "noto-fonts-emoji"
     "dolphin"
@@ -221,7 +219,7 @@ copy_dotfiles() {
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
   # Create config directories
-  mkdir -p "$HOME/.config"/{DankMaterialShell,kitty,nvim,tmux,btop,bat,cava,yazi,hypr,zsh}
+  mkdir -p "$HOME/.config"/{DankMaterialShell,kitty,nvim,tmux,btop,bat,cava,yazi,hypr,zsh,environment.d}
   mkdir -p "$HOME/.config/btop/themes"
   mkdir -p "$HOME/.config/bat/themes"
   mkdir -p "$HOME/.config/cava"/{themes,shaders}
@@ -250,6 +248,10 @@ copy_dotfiles() {
   cat >"$HOME/.zshenv" <<EOF
 export ZDOTDIR="\${ZDOTDIR:-\$HOME/.config/zsh}"
 [ -f "\$ZDOTDIR/.zshenv" ] && source "\$ZDOTDIR/.zshenv"
+EOF
+
+  cat >"$HOME/.config/environment.d/90-dms.conf" <<EOF
+Environment=QT_QPA_PLATFORMTHEME=qt6ct
 EOF
 
   print_success "Dotfiles copied successfully"
