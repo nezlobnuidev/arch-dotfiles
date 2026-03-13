@@ -101,7 +101,6 @@ install_dependencies() {
   print_info "Checking for required packages..."
 
   packages=(
-    "hypridle"
     "wl-clipboard"
     "cliphist"
     "pipewire"
@@ -122,6 +121,11 @@ install_dependencies() {
     "bluez-utils"
     "mate-polkit"
     "xdg-desktop-portal-hyprland"
+    "power-profiles-daemon"
+    "cups-pk-helper"
+    "kimageformats"
+    "khal"
+    "fprintd"
     "xdg-desktop-portal-gtk"
     "xdg-user-dirs"
     "qt5ct"
@@ -199,9 +203,9 @@ install_dependencies() {
 
     if [ -n "$AUR_HELPER" ]; then
       print_info "Installing AUR packages with $AUR_HELPER..."
-      "$AUR_HELPER" -S --noconfirm --needed dms-shell-bin zen-browser-bin bibata-cursor-theme qt6ct-kde
+      "$AUR_HELPER" -S --noconfirm --needed zsh-vi-mode dsearch-bin zen-browser-bin bibata-cursor-theme qt6ct-kde
     else
-      print_warning "No AUR helper available. Please install 'dms-shell-bin', 'zen-browser-bin', and 'bibata-cursor-theme' manually from AUR."
+      print_warning "No AUR helper available."
     fi
 
     print_success "Packages installed successfully"
@@ -280,64 +284,6 @@ install_local_themes() {
 }
 
 # ═══════════════════════════════════════════════════════════════════
-# CONFIGURE CURSOR THEME
-# ═══════════════════════════════════════════════════════════════════
-configure_cursor_theme() {
-  print_header "Configuring cursor theme"
-
-  print_info "Setting system cursor theme..."
-  sudo mkdir -p /usr/share/icons/default/
-  cat <<EOF | sudo tee /usr/share/icons/default/index.theme >/dev/null
-[Icon Theme]
-Inherits=Bibata-Modern-Classic
-EOF
-
-  print_info "Setting GTK cursor theme..."
-  mkdir -p "$HOME/.config/gtk-3.0/" "$HOME/.config/gtk-4.0/"
-  cat >"$HOME/.config/gtk-3.0/settings.ini" <<EOF
-[Settings]
-gtk-theme-name=adw-gtk3-dark
-gtk-icon-theme-name=Gruvbox
-gtk-cursor-theme-name=Bibata-Modern-Classic
-EOF
-
-  cat >"$HOME/.config/gtk-4.0/settings.ini" <<EOF
-[Settings]
-gtk-theme-name=adw-gtk3-dark
-gtk-icon-theme-name=Gruvbox
-gtk-cursor-theme-name=Bibata-Modern-Classic
-EOF
-
-  cat >"$HOME/.gtkrc-2.0" <<EOF
-gtk-theme-name="adw-gtk3-dark"
-gtk-icon-theme-name="Gruvbox"
-gtk-cursor-theme-name="Bibata-Modern-Classic"
-EOF
-
-  print_success "Cursor theme configured"
-}
-
-# ═══════════════════════════════════════════════════════════════════
-# APPLY GTK SETTINGS
-# ═══════════════════════════════════════════════════════════════════
-apply_gtk_settings() {
-  print_header "Applying GTK theme settings"
-
-  if ! command -v gsettings &>/dev/null; then
-    print_warning "gsettings not found, skipping GTK theme registration."
-    return
-  fi
-
-  print_info "Applying GTK theme, dark mode, icon theme, and cursor theme via gsettings..."
-  gsettings set org.gnome.desktop.interface gtk-theme "adw-gtk3-dark" 2>/dev/null || print_warning "Could not set GTK theme via gsettings."
-  gsettings set org.gnome.desktop.interface color-scheme "prefer-dark" 2>/dev/null || print_warning "Could not set dark mode via gsettings."
-  gsettings set org.gnome.desktop.interface icon-theme "Gruvbox" 2>/dev/null || print_warning "Could not set icon theme via gsettings."
-  gsettings set org.gnome.desktop.interface cursor-theme "Bibata-Modern-Classic" 2>/dev/null || print_warning "Could not set cursor theme via gsettings."
-
-  print_success "GTK settings applied"
-}
-
-# ═══════════════════════════════════════════════════════════════════
 # SET PERMISSIONS
 # ═══════════════════════════════════════════════════════════════════
 set_permissions() {
@@ -403,14 +349,14 @@ main() {
   sudo systemctl enable --now keyd 2>/dev/null || print_warning "Could not enable keyd service."
   sudo systemctl enable --now libvirtd 2>/dev/null || print_warning "Could not enable libvirtd service."
   sudo systemctl enable --now NetworkManager 2>/dev/null || print_warning "Could not enable NetworkManager."
-  sudo systemctl enable --now ufw 2>/dev/null || print_warning "Could not enable ufw service."
+  sudo systemctl enable --now power-profiles-daemon 2>/dev/null || print_warning "Could not enable power-profiles-daemon service."
+  systemctl --user enable --now dsearch 2>/dev/null || print_warning "Could not enable dsearch user service."
   sudo usermod -aG docker "$USER" 2>/dev/null || print_warning "Could not add $USER to docker group."
   sudo usermod -aG libvirt "$USER" 2>/dev/null || print_warning "Could not add $USER to libvirt group."
   sudo usermod -aG kvm "$USER" 2>/dev/null || print_warning "Could not add $USER to kvm group."
   sudo ufw default deny incoming 2>/dev/null || print_warning "Could not set ufw default incoming policy."
   sudo ufw default allow outgoing 2>/dev/null || print_warning "Could not set ufw default outgoing policy."
   sudo ufw allow ssh 2>/dev/null || print_warning "Could not allow SSH through ufw."
-  sudo ufw --force enable 2>/dev/null || print_warning "Could not enable ufw firewall."
 
   echo
   print_header "Installation Complete!"

@@ -231,7 +231,7 @@
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
   "acMonitorTimeout": 0,
-  "acLockTimeout": 0,
+  "acLockTimeout": 60,
   "acSuspendTimeout": 0,
   "acSuspendBehavior": 0,
   "acProfileName": "",
@@ -397,7 +397,7 @@
           "enabled": true
         },
         {
-          "id": "cpuTemp",
+          "id": "cpuUsage",
           "enabled": true,
           "minimumWidth": true
         },
@@ -423,10 +423,14 @@
         {
           "id": "clock",
           "enabled": true,
-          "clockCompactMode": true
+          "clockCompactMode": false
         }
       ],
       "rightWidgets": [
+        {
+          "id": "systemTray",
+          "enabled": true
+        },
         {
           "id": "systemUpdate",
           "enabled": true
