@@ -424,17 +424,17 @@
         {
           "id": "workspaceSwitcher",
           "enabled": true
-        },
-        {
-          "id": "clock",
-          "enabled": true,
-          "clockCompactMode": false
         }
       ],
       "rightWidgets": [
         {
           "id": "systemTray",
           "enabled": true
+        },
+        {
+          "id": "spacer",
+          "enabled": true,
+          "size": 20
         },
         {
           "id": "systemUpdate",
@@ -446,6 +446,10 @@
         },
         {
           "id": "keyboard_layout_name",
+          "enabled": true
+        },
+        {
+          "id": "clock",
           "enabled": true
         },
         {
