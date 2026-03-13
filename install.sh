@@ -336,10 +336,6 @@ main() {
   install_dependencies
   copy_dotfiles
   install_local_themes
-  print_info "Creating XDG user directories..."
-  xdg-user-dirs-update
-  configure_cursor_theme
-  apply_gtk_settings
   set_permissions
   change_shell
 
