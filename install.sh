@@ -128,6 +128,7 @@ install_dependencies() {
     "fprintd"
     "xdg-desktop-portal-gtk"
     "xdg-user-dirs"
+    "adw-gtk-theme"
     "qt5ct"
     "ttf-jetbrains-mono-nerd"
     "noto-fonts-emoji"
@@ -252,10 +253,6 @@ copy_dotfiles() {
   cat >"$HOME/.zshenv" <<EOF
 export ZDOTDIR="\${ZDOTDIR:-\$HOME/.config/zsh}"
 [ -f "\$ZDOTDIR/.zshenv" ] && source "\$ZDOTDIR/.zshenv"
-EOF
-
-  cat >"$HOME/.config/environment.d/90-dms.conf" <<EOF
-Environment=QT_QPA_PLATFORMTHEME=qt6ct
 EOF
 
   print_success "Dotfiles copied successfully"

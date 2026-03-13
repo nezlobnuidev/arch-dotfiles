@@ -1,11 +1,11 @@
 {
   "currentThemeName": "custom",
   "currentThemeCategory": "registry",
-  "customThemeFile": "/home/grogu/.config/DankMaterialShell/themes/gruvboxMaterial/theme.json",
+  "customThemeFile": "/home/chief/.config/DankMaterialShell/themes/gruvboxMaterial/theme.json",
   "registryThemeVariants": {
     "gruvboxMaterial": "hard"
   },
-  "matugenScheme": "scheme-tonal-spot",
+  "matugenScheme": "scheme-content",
   "runUserMatugenTemplates": true,
   "matugenTargetMonitor": "",
   "popupTransparency": 1,
@@ -172,6 +172,11 @@
       "count": 2,
       "lastUsed": 1773389609777,
       "name": "Firefox"
+    },
+    "zen": {
+      "count": 1,
+      "lastUsed": 1773411578782,
+      "name": "Zen Browser"
     }
   },
   "appPickerViewMode": "grid",
@@ -270,7 +275,7 @@
   "matugenTemplateVesktop": true,
   "matugenTemplateEquibop": true,
   "matugenTemplateGhostty": true,
-  "matugenTemplateKitty": true,
+  "matugenTemplateKitty": false,
   "matugenTemplateFoot": true,
   "matugenTemplateAlacritty": true,
   "matugenTemplateNeovim": false,
