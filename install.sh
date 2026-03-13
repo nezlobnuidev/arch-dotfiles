@@ -125,8 +125,7 @@ install_dependencies() {
     "xdg-desktop-portal-gtk"
     "xdg-user-dirs"
     "adw-gtk-theme"
-    "qt5ct"
-    "qt6ct-kde"
+    "qt5ct"    
     "nwg-look"
     "ttf-jetbrains-mono-nerd"
     "noto-fonts-emoji"
@@ -202,7 +201,7 @@ install_dependencies() {
 
     if [ -n "$AUR_HELPER" ]; then
       print_info "Installing AUR packages with $AUR_HELPER..."
-      "$AUR_HELPER" -S --noconfirm --needed dms-shell-bin zen-browser-bin bibata-cursor-theme
+      "$AUR_HELPER" -S --noconfirm --needed dms-shell-bin zen-browser-bin bibata-cursor-theme qt6ct-kde
     else
       print_warning "No AUR helper available. Please install 'dms-shell-bin', 'zen-browser-bin', and 'bibata-cursor-theme' manually from AUR."
     fi
