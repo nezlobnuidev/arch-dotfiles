@@ -95,26 +95,6 @@
       "id": "bluetooth",
       "enabled": true,
       "width": 50
-    },
-    {
-      "id": "audioOutput",
-      "enabled": true,
-      "width": 50
-    },
-    {
-      "id": "audioInput",
-      "enabled": true,
-      "width": 50
-    },
-    {
-      "id": "nightMode",
-      "enabled": true,
-      "width": 50
-    },
-    {
-      "id": "darkMode",
-      "enabled": true,
-      "width": 50
     }
   ],
   "showWorkspaceIndex": false,
@@ -235,10 +215,10 @@
   "soundNewNotification": true,
   "soundVolumeChanged": true,
   "soundPluggedIn": true,
-  "acMonitorTimeout": 600,
-  "acLockTimeout": 300,
-  "acSuspendTimeout": 1800,
-  "acSuspendBehavior": 2,
+  "acMonitorTimeout": 300,
+  "acLockTimeout": 120,
+  "acSuspendTimeout": 600,
+  "acSuspendBehavior": 1,
   "acProfileName": "",
   "batteryMonitorTimeout": 0,
   "batteryLockTimeout": 0,
@@ -354,7 +334,7 @@
   "osdCapsLockEnabled": true,
   "osdPowerProfileEnabled": true,
   "osdAudioOutputEnabled": true,
-  "powerActionConfirm": true,
+  "powerActionConfirm": false,
   "powerActionHoldDuration": 0.5,
   "powerMenuActions": [
     "reboot",
@@ -414,6 +394,10 @@
         {
           "id": "idleInhibitor",
           "enabled": true
+        },
+        {
+          "id": "systemUpdate",
+          "enabled": true
         }
       ],
       "centerWidgets": [
@@ -437,12 +421,20 @@
           "size": 20
         },
         {
-          "id": "systemUpdate",
-          "enabled": true
-        },
-        {
-          "id": "notificationButton",
-          "enabled": true
+          "id": "controlCenterButton",
+          "enabled": true,
+          "showNetworkIcon": true,
+          "showBluetoothIcon": true,
+          "showAudioIcon": true,
+          "showAudioPercent": true,
+          "showVpnIcon": true,
+          "showBrightnessIcon": false,
+          "showBrightnessPercent": false,
+          "showMicIcon": false,
+          "showMicPercent": true,
+          "showBatteryIcon": false,
+          "showPrinterIcon": false,
+          "showScreenSharingIcon": true
         },
         {
           "id": "keyboard_layout_name",
@@ -450,6 +442,10 @@
         },
         {
           "id": "clock",
+          "enabled": true
+        },
+        {
+          "id": "notificationButton",
           "enabled": true
         },
         {
