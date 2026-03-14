@@ -204,7 +204,7 @@ install_dependencies() {
 
     if [ -n "$AUR_HELPER" ]; then
       print_info "Installing AUR packages with $AUR_HELPER..."
-      "$AUR_HELPER" -S --noconfirm --needed zsh-vi-mode dsearch-bin zen-browser-bin bibata-cursor-theme qt6ct-kde
+      "$AUR_HELPER" -S --noconfirm --needed zsh-vi-mode dsearch-bin zen-browser-bin bibata-cursor-theme qt6ct-kde opencode
     else
       print_warning "No AUR helper available."
     fi
@@ -224,7 +224,7 @@ copy_dotfiles() {
   SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
   # Create config directories
-  mkdir -p "$HOME/.config"/{DankMaterialShell,kitty,nvim,tmux,btop,bat,cava,yazi,hypr,zsh,environment.d}
+  mkdir -p "$HOME/.config"/{DankMaterialShell,kitty,nvim,tmux,btop,bat,cava,yazi,niri,zsh,environment.d}
   mkdir -p "$HOME/.config/btop/themes"
   mkdir -p "$HOME/.config/bat/themes"
   mkdir -p "$HOME/.config/cava"/{themes,shaders}
@@ -242,7 +242,7 @@ copy_dotfiles() {
   cp -r "$SCRIPT_DIR/bat/." "$HOME/.config/bat/"
   cp -r "$SCRIPT_DIR/cava/." "$HOME/.config/cava/"
   cp -r "$SCRIPT_DIR/yazi/." "$HOME/.config/yazi/"
-  cp -r "$SCRIPT_DIR/hypr/." "$HOME/.config/hypr/"
+  cp -r "$SCRIPT_DIR/niri/." "$HOME/.config/niri/"
   cp -r "$SCRIPT_DIR/zsh/." "$HOME/.config/zsh/"
   cp -r "$SCRIPT_DIR/Pictures/." "$HOME/Pictures/"
   cp "$SCRIPT_DIR/dolphinrc" "$HOME/.config/dolphinrc"

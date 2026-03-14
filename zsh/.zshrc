@@ -134,9 +134,9 @@ alias za='nohup zathura "$(find . -type f \( -name "*.pdf" -o -name "*.epub" -o 
 # Dirs
 alias ..='cd ..'
 alias ...='cd ../..'
-alias .3='cd ../../..'
-alias .4='cd ../../../..'
-alias .5='cd ../../../../..'
+alias ....='cd ../../..'
+alias .....='cd ../../../..'
+alias ......='cd ../../../../..'
 
 # Always mkdir a path (this doesn't inhibit functionality to make a single dir)
 alias mkdir='mkdir -p'
@@ -199,7 +199,8 @@ alias zln='zmv -L'  # Link with patterns
 
 # Access with ~name syntax, e.g., cd ~yt or ls ~yt
 hash -d doc=~/Documents/
-hash -d dl=~/Downloads
+hash -d dl=~/Downloads/
+hash -d prj=~/Projects/
 
 # Clear screen but keep current command buffer
 function clear-screen-and-scrollback() {
