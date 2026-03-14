@@ -204,7 +204,7 @@ install_dependencies() {
 
     if [ -n "$AUR_HELPER" ]; then
       print_info "Installing AUR packages with $AUR_HELPER..."
-      "$AUR_HELPER" -S --noconfirm --needed zsh-vi-mode dsearch-bin zen-browser-bin bibata-cursor-theme qt6ct-kde opencode
+      "$AUR_HELPER" -S --noconfirm --needed quickshell-git zsh-vi-mode dsearch-bin zen-browser-bin bibata-cursor-theme qt6ct-kde opencode yandex-music
     else
       print_warning "No AUR helper available."
     fi
