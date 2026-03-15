@@ -242,7 +242,7 @@ copy_dotfiles() {
   cp -r "$SCRIPT_DIR/bat/." "$HOME/.config/bat/"
   cp -r "$SCRIPT_DIR/cava/." "$HOME/.config/cava/"
   cp -r "$SCRIPT_DIR/yazi/." "$HOME/.config/yazi/"
-  cp -r "$SCRIPT_DIR/niri/." "$HOME/.config/niri/"
+  cp -r "$SCRIPT_DIR/hypr/." "$HOME/.config/hypr/"
   cp -r "$SCRIPT_DIR/zsh/." "$HOME/.config/zsh/"
   cp -r "$SCRIPT_DIR/Pictures/." "$HOME/Pictures/"
   cp "$SCRIPT_DIR/dolphinrc" "$HOME/.config/dolphinrc"
