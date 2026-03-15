@@ -334,7 +334,7 @@
   "osdCapsLockEnabled": true,
   "osdPowerProfileEnabled": true,
   "osdAudioOutputEnabled": true,
-  "powerActionConfirm": false,
+  "powerActionConfirm": true,
   "powerActionHoldDuration": 0.5,
   "powerMenuActions": [
     "reboot",

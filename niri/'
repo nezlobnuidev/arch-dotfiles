@@ -132,14 +132,10 @@ layout {
     // `draw-border-with-background`.
     border {
         //off
-        width 1
+        width 2
         active-color   "#707070"      // Neutral gray
         inactive-color "#d0d0d0"      // Light gray
         urgent-color   "#cc4444"      // Softer red
-    }
-
-    focus-ring {
-        width 1
     }
     
     shadow {
@@ -212,20 +208,17 @@ animations {
 // https://github.com/YaLTeR/niri/wiki/Configuration:-Window-Rules
 // Work around WezTerm's initial configure bug
 // by setting an empty default-column-width.
- window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
-    tiled-state true
-    draw-border-with-background false
-}
-
 window-rule {
     // This regular expression is intentionally made as specific as possible,
     // since this is the default config, and we want no false positives.
     // You can get away with just app-id="wezterm" if you want.
     match app-id=r#"^org\.wezfurlong\.wezterm$"#
     default-column-width {}
-   
+    geometry-corner-radius 12
+    clip-to-geometry true
+    tiled-state true
+    draw-border-with-background false
+
 }
 window-rule {
     match app-id=r#"^org\.gnome\."#
@@ -287,7 +280,7 @@ recent-windows {
 
 // Include dms files
 include "dms/colors.kdl"
-//include "dms/layout.kdl"
+include "dms/layout.kdl"
 include "dms/alttab.kdl"
 include "dms/binds.kdl"
 include "dms/outputs.kdl"
