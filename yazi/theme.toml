@@ -1,2 +1,24 @@
 [flavor]
 dark = "gruvbox-dark-material"
+
+[tabs]
+active = { fg = "#282828", bg = "reset" }
+inactive = { fg = "#a89984", bg = "reset" }
+
+[mode]
+normal_main = { fg = "#282828", bg = "#a89984", bold = true }
+normal_alt = { fg = "#a89984", bg = "#3c3836" }
+select_main = { fg = "#282828", bg = "#e78a4e", bold = true }
+select_alt = { fg = "#a89984", bg = "#3c3836" }
+unset_main = { fg = "#282828", bg = "#d8a657", bold = true }
+unset_alt = { fg = "#a89984", bg = "#3c3836" }
+
+[status]
+progress_normal = { fg = "#3c3836", bg = "#32302f" }
+progress_error = { fg = "#ea6962", bg = "#32302f" }
+
+[which]
+mask = { bg = "reset" }
+
+[help]
+footer = { fg = "#32302f", bg = "#a89984" }
