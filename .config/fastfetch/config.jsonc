@@ -1,0 +1,52 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "display": {
+    "separator": ": ",
+    "color": {
+      "keys": "#98971a",
+      "title": "#458588",
+      "output": "#ebdbb2",
+      "separator": "#928374"
+    },
+    "bar": {
+      "color": {
+        "elapsed": "#98971a",
+        "total": "#504945",
+        "border": "#928374"
+      }
+    },
+    "percent": {
+      "color": {
+        "green": "#98971a",
+        "yellow": "#d79921",
+        "red": "#cc241d"
+      }
+    }
+  },
+  "modules": [
+    "title",
+    "separator",
+    "os",
+    "host",
+    "kernel",
+    "uptime",
+    "packages",
+    "shell",
+    "display",
+    "de",
+    "wm",
+    "theme",
+    "icons",
+    "font",
+    "cursor",
+    "terminal",
+    "cpu",
+    "gpu",
+    "memory",
+    "disk",
+    "localip",
+    "locale",
+    "break",
+    "colors"
+  ]
+}

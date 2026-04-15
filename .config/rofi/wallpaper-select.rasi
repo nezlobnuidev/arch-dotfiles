@@ -1,0 +1,113 @@
+configuration {
+    show-icons: true;
+    hover-select: true;
+    font: "JetBrainsMono Nerd Font 10";
+    drun-display-format: "{name}";
+}
+
+@import "colors.rasi"
+
+* {
+    background-window: rgba(12, 12, 14, 0.78);
+    background-card: rgba(40, 40, 40, 0.92);
+    background-card-alt: rgba(53, 53, 53, 0.96);
+    foreground-muted: rgba(235, 219, 178, 0.75);
+    border-color: @selected;
+}
+
+window {
+    transparency: "real";
+    location: center;
+    anchor: center;
+    fullscreen: true;
+    width: 100%;
+    height: 100%;
+    background-color: @background-window;
+}
+
+mainbox {
+    children: [ "inputbar", "listview" ];
+    background-color: transparent;
+    padding: 44px 52px 52px;
+    spacing: 24px;
+}
+
+inputbar {
+    background-color: transparent;
+    children: [ "prompt", "entry" ];
+    spacing: 12px;
+    padding: 0px 12px;
+}
+
+prompt {
+    enabled: true;
+    background-color: @background-card;
+    text-color: @selected;
+    border: 1px;
+    border-color: @border-color;
+    border-radius: 18px;
+    padding: 14px 20px;
+    str: "walls";
+}
+
+entry {
+    enabled: true;
+    background-color: @background-card;
+    text-color: @foreground;
+    border: 1px;
+    border-color: transparent;
+    border-radius: 18px;
+    padding: 14px 20px;
+    placeholder: "Type to filter wallpapers";
+    placeholder-color: @foreground-muted;
+}
+
+listview {
+    columns: 4;
+    lines: 3;
+    cycle: true;
+    dynamic: true;
+    scrollbar: false;
+    layout: vertical;
+    fixed-height: true;
+    fixed-columns: true;
+    background-color: transparent;
+    text-color: @foreground;
+    spacing: 20px;
+    padding: 6px 8px;
+}
+
+element {
+    orientation: vertical;
+    border: 1px;
+    border-color: transparent;
+    border-radius: 26px;
+    background-color: @background-card;
+    text-color: @foreground;
+    padding: 14px 14px 16px;
+}
+
+element normal.normal {
+    background-color: @background-card;
+    text-color: @foreground;
+}
+
+element selected.normal {
+    background-color: @background-card-alt;
+    border-color: @selected;
+    text-color: @foreground;
+}
+
+element-icon {
+    size: 300px;
+    border-radius: 20px;
+    background-color: transparent;
+}
+
+element-text {
+    margin: 14px 8px 2px;
+    horizontal-align: 0.0;
+    background-color: transparent;
+    text-color: inherit;
+    font: "JetBrainsMono Nerd Font SemiBold 10";
+}
