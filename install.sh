@@ -395,6 +395,32 @@ install_theme_archives() {
   done
 }
 
+install_keyd_config_if_requested() {
+  if ! package_requested "keyd"; then
+    return
+  fi
+
+  local source_dir source_file target_dir target_file
+  source_dir="$SCRIPT_DIR/keyd"
+  source_file="$source_dir/default.conf"
+  target_dir="/etc/keyd"
+  target_file="$target_dir/default.conf"
+
+  if [[ ! -d "$source_dir" ]]; then
+    echo "Skipping keyd config: source directory not found"
+    return
+  fi
+
+  if [[ ! -f "$source_file" ]]; then
+    echo "Skipping keyd config: $source_file not found"
+    return
+  fi
+
+  echo "Installing keyd config to $target_file"
+  sudo install -d -m 755 "$target_dir"
+  sudo install -m 644 "$source_file" "$target_file"
+}
+
 print_rootless_docker_notice_if_requested() {
   if ! package_requested "docker"; then
     return
@@ -485,6 +511,7 @@ install_with_paru "$AUR_LIST"
 copy_config_dirs
 copy_home_dirs
 install_theme_archives
+install_keyd_config_if_requested
 enable_unit_if_requested "firewalld" "firewalld.service"
 enable_unit_if_requested "reflector" "reflector.timer"
 enable_unit_if_requested "bluez" "bluetooth.service"
