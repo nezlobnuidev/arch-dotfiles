@@ -421,22 +421,6 @@ install_keyd_config_if_requested() {
   sudo install -m 644 "$source_file" "$target_file"
 }
 
-print_rootless_docker_notice_if_requested() {
-  if ! package_requested "docker"; then
-    return
-  fi
-
-  cat <<'EOF'
-Docker is requested in pkglist.lst.
-This setup uses rootless Docker, so docker.service should stay disabled.
-Run these steps as the target user after package installation:
-  sudo systemctl disable --now docker.service docker.socket
-  dockerd-rootless-setuptool.sh install
-  systemctl --user enable --now docker
-  sudo loginctl enable-linger "$USER"
-EOF
-}
-
 require_file() {
   local file="$1"
 
@@ -517,10 +501,12 @@ enable_unit_if_requested "reflector" "reflector.timer"
 enable_unit_if_requested "bluez" "bluetooth.service"
 enable_unit_if_requested "power-profiles-daemon" "power-profiles-daemon.service"
 enable_unit_if_requested "keyd" "keyd.service"
+enable_unit_if_requested "docker" "docker.service"
+enable_unit_if_requested "docker" "docker.socket"
 enable_user_unit_if_requested "dms-shell-hyprland" "dms.service"
 enable_first_available_unit_if_requested "libvirt" "libvirtd.service" "virtqemud.service"
 enable_unit_if_all_requested "grub-btrfsd.service" "grub-btrfs" "timeshift"
 add_target_user_to_group_if_requested "libvirt" "libvirt"
+add_target_user_to_group_if_requested "docker" "docker"
 add_target_user_to_group_if_requested "virtualbox" "vboxusers"
 change_shell_to_fish_if_requested
-print_rootless_docker_notice_if_requested

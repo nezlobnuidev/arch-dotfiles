@@ -12,7 +12,6 @@ set -g FZF_LEGACY_KEYBINDINGS 0
 
 set -gx GOPATH $HOME/go
 set -gx GOTOOLCHAIN auto
-set -gx DOCKER_HOST unix:///run/user/(id -u)/docker.sock
 
 fish_add_path $HOME/.local/bin
 fish_add_path $GOPATH/bin

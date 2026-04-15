@@ -25,7 +25,6 @@ firewalld
 fish
 flameshot
 fprintd
-fuse-overlayfs
 fzf
 git
 github-cli
@@ -68,8 +67,6 @@ qt6-multimedia
 qt6ct
 reflector
 ripgrep
-rootlesskit
-slirp4netns
 slurp
 starship
 thunar
