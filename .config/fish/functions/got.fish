@@ -1,3 +1,0 @@
-function got --description "Run go test with race and verbose"
-    go test -race -v ./...
-end

@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-exec /home/chief/.local/bin/kitty-live \
-  --title "System update" \
-  sudo pacman -Syu
