@@ -1,3 +1,4 @@
+linux-lts-headers
 acpi
 alsa-utils
 amd-ucode
@@ -80,6 +81,7 @@ unzip
 upower
 virtualbox
 virtualbox-host-modules-arch
+virtualbox-host-modules-lts
 wget
 wireplumber
 wl-clipboard
