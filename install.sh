@@ -86,6 +86,23 @@ enable_unit_if_requested() {
   sudo systemctl enable --now "$unit"
 }
 
+enable_unit_without_start_if_requested() {
+  local package="$1"
+  local unit="$2"
+
+  if ! package_requested "$package"; then
+    return
+  fi
+
+  if ! unit_exists "$unit"; then
+    echo "Skipping $unit: unit not found"
+    return
+  fi
+
+  echo "Enabling $unit for $package without starting it now"
+  sudo systemctl enable "$unit"
+}
+
 enable_user_unit_if_requested() {
   local package="$1"
   local unit="$2"
@@ -102,11 +119,6 @@ enable_user_unit_if_requested() {
   echo "Enabling user unit $unit for $package"
   if ! systemctl --user enable "$unit"; then
     echo "Skipping user unit $unit: enable failed"
-    return
-  fi
-
-  if systemctl --user is-active --quiet graphical-session.target; then
-    systemctl --user start "$unit" || echo "Skipping user unit $unit: start failed"
   fi
 }
 
@@ -501,8 +513,8 @@ enable_unit_if_requested "reflector" "reflector.timer"
 enable_unit_if_requested "bluez" "bluetooth.service"
 enable_unit_if_requested "power-profiles-daemon" "power-profiles-daemon.service"
 enable_unit_if_requested "keyd" "keyd.service"
-enable_unit_if_requested "docker" "docker.service"
-enable_unit_if_requested "docker" "docker.socket"
+enable_unit_without_start_if_requested "docker" "docker.service"
+enable_unit_without_start_if_requested "docker" "docker.socket"
 enable_user_unit_if_requested "dms-shell-hyprland" "dms.service"
 enable_first_available_unit_if_requested "libvirt" "libvirtd.service" "virtqemud.service"
 enable_unit_if_all_requested "grub-btrfsd.service" "grub-btrfs" "timeshift"
